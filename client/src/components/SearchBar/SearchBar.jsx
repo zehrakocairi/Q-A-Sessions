@@ -1,5 +1,5 @@
 import React, { memo, useState } from "react";
-import "./SearchBarComponent.css";
+import "./SearchBar.css";
 
 function SearchBar({ runSearch }) {
   const [term, setTerm] = useState("");
@@ -17,12 +17,7 @@ function SearchBar({ runSearch }) {
   return (
     <div className="search-form-wrapper">
       <form className="search-form">
-        <input
-          type="text"
-          value={term}
-          placeholder="Search in all questions"
-          onChange={handleChange}
-        />
+        <input type="text" value={term} placeholder="Search in all questions" onChange={handleChange} />
       </form>
     </div>
   );

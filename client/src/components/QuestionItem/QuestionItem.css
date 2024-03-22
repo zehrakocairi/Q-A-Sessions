@@ -1,3 +1,14 @@
+.questionItem {
+  background: #eee;
+  padding: 2rem 1rem;
+  border-radius: 4px;
+}
+.question-wrapper h1 {
+  line-height: 24px;
+  font-weight: 100;
+  margin-bottom: 18px;
+  font-size: 24px;
+}
 .questionItem:not(:last-of-type) {
   margin-bottom: 1rem;
 }
@@ -36,7 +47,8 @@
 }
 
 .question-wrapper p {
-  font-size: 14px;
+  font-family: auto;
+  font-size: 17px;
   letter-spacing: 0.1px;
   margin-bottom: 9px;
 }
