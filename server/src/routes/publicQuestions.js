@@ -1,6 +1,5 @@
 import express from "express";
-import getQuestions from "../controllers/Questions/getQuestions.js";
-import getQuestionById from "../controllers/Questions/getQuestionById.js";
+import { getQuestionById, getQuestions } from "../controllers/Questions/questionController.js";
 
 const publicQuestionsRouter = express.Router();
 

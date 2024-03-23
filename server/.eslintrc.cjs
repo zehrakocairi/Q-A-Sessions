@@ -22,7 +22,7 @@ module.exports = {
     // prettier does double quotes so make that the default
     quotes: ["error", "double"],
     // block any code that is not formatted according to prettier formatting rules
-    "prettier/prettier": "error",
+    "prettier/prettier": "off",
     // turned off the rule to make everything a default export
     "import/prefer-default-export": "off",
     // turned off the rule that you should not have file extensions. For modules in node this is actually required

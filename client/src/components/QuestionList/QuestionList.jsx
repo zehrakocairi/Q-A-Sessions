@@ -3,13 +3,11 @@ import useFetch from "../../hooks/useFetch";
 import QuestionSorting from "../QuestionSorting/QuestionSorting";
 import QuestionItem from "../QuestionItem/QuestionItem";
 import { logInfo } from "../../../../server/src/util/logging.js";
-import SearchBarComponent from "../SearchBarComponent/SearchBarComponent.jsx";
+import SearchBarComponent from "../SearchBar/SearchBar.jsx";
+import "./QuestionList.css";
 
 const QuestionList = () => {
-  const { isLoading, error, performFetch, cancelFetch } = useFetch(
-    "/questions",
-    fetchQuestions
-  );
+  const { isLoading, error, performFetch, cancelFetch } = useFetch("/questions", fetchQuestions);
 
   const [questions, setQuestions] = useState([]);
   const [sortedQuestions, setSortedQuestions] = useState([]);
@@ -85,17 +83,7 @@ const QuestionList = () => {
         />
       </div>
       <div>
-        {isLoading ? (
-          <h1>Loading...</h1>
-        ) : (
-          sortedQuestions.map((question) => (
-            <QuestionItem
-              key={question._id}
-              question={question}
-              onDelete={setQuestions}
-            />
-          ))
-        )}
+        {isLoading ? <h1>Loading...</h1> : sortedQuestions.map((question) => <QuestionItem key={question._id} question={question} onDelete={setQuestions} />)}
       </div>
     </div>
   );
