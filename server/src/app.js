@@ -37,7 +37,6 @@ app.use("/api/user", requireAuth, userRouter);
 app.use("/api/user/userQuestions", requireAuth, userQuestionsRouter);
 app.use("/api/questions", publicQuestionsRouter);
 app.use("/api/questions", requireAuth, questionRouter);
-//app.get("/api/answer", getAnswers);
 app.use("/api/answer", requireAuth, answerRouter);
 app.use("/api/questions/:questionId/answers", requireAuth, answerRouter);
 export default app;
