@@ -22,7 +22,7 @@ const UserProfilePage = () => {
       </div>
       <div id="user-profile-action">
         <Button>
-          <Link to="/user-profile/questions" className="user-profile-link">
+          <Link to="/user-profile/my-questions" className="user-profile-link">
             My Questions
           </Link>
         </Button>

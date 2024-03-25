@@ -45,34 +45,21 @@ const Header = () => {
           {click && !user && (
             <>
               <li>
-                <Link
-                  to="/auth/sign-up"
-                  className="header-links-mobile"
-                  onClick={closeMobileMenu}
-                >
+                <Link to="/auth/sign-up" className="header-links-mobile" onClick={closeMobileMenu}>
                   Sign Up
                 </Link>
               </li>
               <li className="header-item">
-                <Link
-                  to="/auth/log-in"
-                  className="header-links"
-                  onClick={closeMobileMenu}
-                >
+                <Link to="/auth/log-in" className="header-links" onClick={closeMobileMenu}>
                   Log In
                 </Link>
               </li>
             </>
           )}
           {user && !click && (
-            <li
-              className="header-item"
-              onMouseEnter={handleDropdownMouseEnter}
-              onMouseLeave={handleDropdownMouseLeave}
-            >
+            <li className="header-item" onMouseEnter={handleDropdownMouseEnter} onMouseLeave={handleDropdownMouseLeave}>
               <div className="header-links" onClick={closeMobileMenu}>
-                {user ? `Welcome ${user.name}` : "Welcome"}{" "}
-                <i className="fas fa-caret-down" />
+                {user ? `Welcome ${user.name}` : "Welcome"} <i className="fas fa-caret-down" />
               </div>
               {dropdown && <Dropdown />}
             </li>
@@ -96,11 +83,7 @@ const Header = () => {
           )}
           {user && click && (
             <li className="header-item">
-              <Link
-                to="/user-profile"
-                className="header-links"
-                onClick={closeMobileMenu}
-              >
+              <Link to="/user-profile" className="header-links" onClick={closeMobileMenu}>
                 User Profile
               </Link>
             </li>
@@ -108,22 +91,14 @@ const Header = () => {
 
           {user && click && (
             <li className="header-item">
-              <Link
-                to="/post-question"
-                className="header-links"
-                onClick={closeMobileMenu}
-              >
+              <Link to="/post-question" className="header-links" onClick={closeMobileMenu}>
                 Post Question
               </Link>
             </li>
           )}
           {user && click && (
             <li className="header-item">
-              <Link
-                to="/user-profile/questions"
-                className="header-links"
-                onClick={closeMobileMenu}
-              >
+              <Link to="/user-profile/my-questions" className="header-links" onClick={closeMobileMenu}>
                 My Question
               </Link>
             </li>
@@ -137,11 +112,7 @@ const Header = () => {
             <>
               {!user && (
                 <li className="header-item">
-                  <Link
-                    to="/auth/log-in"
-                    className="header-links"
-                    onClick={closeMobileMenu}
-                  >
+                  <Link to="/auth/log-in" className="header-links" onClick={closeMobileMenu}>
                     Log In
                   </Link>
                 </li>
