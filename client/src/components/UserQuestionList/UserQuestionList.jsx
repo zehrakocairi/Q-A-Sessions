@@ -8,10 +8,7 @@ import Typography from "@mui/material/Typography";
 const UserQuestionList = () => {
   const { user } = useAuth();
 
-  const { isLoading, error, performFetch } = useFetch(
-    "/user/userQuestions/userId/" + user.id,
-    fetchUserQuestions
-  );
+  const { isLoading, error, performFetch } = useFetch("/questions/userQuestions/userId/" + user.id, fetchUserQuestions);
 
   const [userQuestions, setUserQuestions] = useState([]);
 
@@ -37,11 +34,7 @@ const UserQuestionList = () => {
       {hasQuestions && (
         <ul>
           {userQuestions.map((qus) => (
-            <QuestionItem
-              key={qus._id}
-              question={qus}
-              onDelete={setUserQuestions}
-            />
+            <QuestionItem key={qus._id} question={qus} onDelete={setUserQuestions} />
           ))}
         </ul>
       )}

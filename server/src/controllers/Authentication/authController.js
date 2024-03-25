@@ -1,4 +1,4 @@
-import { logError, logInfo } from "../../util/logging.js";
+import { logError } from "../../util/logging.js";
 import validationErrorMessage from "../../util/validationErrorMessage.js";
 import { validateUser } from "../../models/User.js";
 import User from "../../models/User.js";
@@ -63,12 +63,7 @@ export const logIn = async (req, res) => {
     const userFound = await User.findOne({ email: user.email });
 
     if (userFound) {
-      logInfo(`User found: ${JSON.stringify(userFound)}`);
-
       const isPasswordValid = await bcrypt.compare(user.password, userFound.password);
-
-      // After the comparison
-      logInfo(`Is password valid? ${isPasswordValid}`);
 
       if (isPasswordValid) {
         // Create jwt token
@@ -103,8 +98,6 @@ export const logIn = async (req, res) => {
 
 export const logOut = (req, res) => {
   res.clearCookie("session");
-
-  logInfo("User successfully logged out");
 
   // Send JSON response to the client confirming successful logout
   res.status(200).json({ success: true, message: "User successfully logged out" });
