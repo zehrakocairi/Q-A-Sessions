@@ -1,6 +1,6 @@
 import Question from "../../models/Question.js";
 
-const getUserQuestions = async (req, res) => {
+export const getUserQuestions = async (req, res) => {
   const userId = req.params.id;
 
   try {
@@ -15,5 +15,3 @@ const getUserQuestions = async (req, res) => {
     res.status(500).json({ success: false, error: "Failed to fetch user questions" });
   }
 };
-
-export default getUserQuestions;
