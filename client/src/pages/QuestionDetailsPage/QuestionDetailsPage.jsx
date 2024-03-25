@@ -17,20 +17,16 @@ const QuestionDetailsPage = () => {
     return cancelQuestionFetch;
   }, []);
 
-  const { performFetch: fetchQuestion, cancelFetch: cancelQuestionFetch } =
-    useFetch(`/questions/${id}`, (response) => {
-      setQuestion(response.result ?? {});
-    });
+  const { performFetch: fetchQuestion, cancelFetch: cancelQuestionFetch } = useFetch(`/questions/${id}`, (response) => {
+    setQuestion(response.result ?? {});
+  });
 
-  const { performFetch: createAnswer } = useFetch(
-    "/answer/create",
-    (response) => {
-      setQuestion((prevQuestion) => ({
-        ...prevQuestion,
-        answers: [...(prevQuestion.answers ?? []), response?.answer ?? []],
-      }));
-    }
-  );
+  const { performFetch: createAnswer } = useFetch("/answer/create", (response) => {
+    setQuestion((prevQuestion) => ({
+      ...prevQuestion,
+      answers: [...(prevQuestion.answers ?? []), response?.answer ?? []],
+    }));
+  });
 
   const handleCreateAnswer = (answerContent) => {
     const answer = {
@@ -50,8 +46,7 @@ const QuestionDetailsPage = () => {
     createAnswer(options);
   };
 
-  const getDeleteUrl = (questionId, answerId) =>
-    `/questions/${questionId}/answers/${answerId}/delete`;
+  const getDeleteUrl = (questionId, answerId) => `/questions/${questionId}/answers/${answerId}/delete`;
 
   const { performFetch: deleteAnswer } = useFetch(
     "", // We don't need to specify a route here, we will do that in the handleDelete function
@@ -62,9 +57,7 @@ const QuestionDetailsPage = () => {
     }
   );
   const handleDelete = (answerId) => {
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete this answer?"
-    );
+    const confirmDelete = window.confirm("Are you sure you want to delete this answer?");
     if (confirmDelete) {
       const options = {
         method: "DELETE",
@@ -84,13 +77,7 @@ const QuestionDetailsPage = () => {
     <div className="question-details-container">
       <QuestionItem question={question} />
       {question.answers?.map((answer, i) => (
-        <AnswerItem
-          key={i}
-          answer={answer}
-          handleDelete={handleDelete}
-          isAnswerBelongsToUser={isAnswerBelongsToUser(answer)}
-          question={question}
-        />
+        <AnswerItem key={i} answer={answer} handleDelete={handleDelete} isAnswerBelongsToUser={isAnswerBelongsToUser(answer)} question={question} />
       ))}
       <CreateAnswer handleSubmit={handleCreateAnswer} />
     </div>

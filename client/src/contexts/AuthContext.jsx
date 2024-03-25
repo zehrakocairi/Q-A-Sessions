@@ -18,16 +18,11 @@ export const AuthProvider = ({ children }) => {
   const { performFetch } = useFetch("/auth/log-out", onLogoutSuccess);
 
   // State to manage the user's authentication status
-  const [user, setUser] = useState(() =>
-    localStorage.getItem("user")
-      ? JSON.parse(localStorage.getItem("user"))
-      : null
-  );
+  const [user, setUser] = useState(() => (localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null));
 
   const login = (userData) => {
     setUser(userData);
     localStorage.setItem("user", JSON.stringify(userData));
-    logInfo("Login successful in AuthContext: " + JSON.stringify(userData));
   };
 
   const logout = () => {
@@ -37,11 +32,7 @@ export const AuthProvider = ({ children }) => {
     performFetch({ method: "POST", url: "/auth/log-out" });
   };
 
-  return (
-    <AuthContext.Provider value={{ user, login, logout }}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={{ user, login, logout }}>{children}</AuthContext.Provider>;
 };
 
 AuthProvider.propTypes = {

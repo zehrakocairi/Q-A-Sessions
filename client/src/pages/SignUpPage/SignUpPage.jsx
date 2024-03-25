@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./SignUpPage.css";
 import { useNavigate } from "react-router-dom";
-
-import Input from "../../components/Input";
 import useFetch from "../../hooks/useFetch";
 import TEST_ID from "./SignUpPage.testid";
 
@@ -18,14 +16,11 @@ const SignUpPage = () => {
     setEmail("");
     setPassword("");
     setInvitationCode("");
-    navigate("/");
+    navigate("/auth/log-in");
     alert("You signed up successfully! Login to continue.");
   };
 
-  const { isLoading, error, performFetch, cancelFetch } = useFetch(
-    "/auth/sign-up",
-    onSuccess
-  );
+  const { isLoading, error, performFetch, cancelFetch } = useFetch("/auth/sign-up", onSuccess);
 
   useEffect(() => {
     return cancelFetch;
@@ -58,9 +53,7 @@ const SignUpPage = () => {
       </div>
     );
   } else if (isLoading) {
-    statusComponent = (
-      <div data-testid={TEST_ID.loadingContainer}>Creating user....</div>
-    );
+    statusComponent = <div data-testid={TEST_ID.loadingContainer}>Creating user....</div>;
   }
 
   return (
@@ -76,22 +69,15 @@ const SignUpPage = () => {
         <form onSubmit={handleSubmit} id="signUpForm">
           <label htmlFor="email">
             Name:
-            <Input
-              name="name"
-              value={name}
-              onChange={(value) => setName(value)}
-              placeholder="Enter your name"
-              data-testid={TEST_ID.nameInput}
-              required
-            />
+            <input name="name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Enter your name" data-testid={TEST_ID.nameInput} required />
           </label>
 
           <label htmlFor="password">
             Email:
-            <Input
+            <input
               name="email"
               value={email}
-              onChange={(value) => setEmail(value)}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
               data-testid={TEST_ID.emailInput}
               required
@@ -103,11 +89,11 @@ const SignUpPage = () => {
 
           <label htmlFor="password">
             Password:
-            <Input
+            <input
               type="password"
               name="password"
               value={password}
-              onChange={(value) => setPassword(value)}
+              onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter your password"
               data-testid={TEST_ID.passwordInput}
               required
@@ -119,10 +105,10 @@ const SignUpPage = () => {
           </label>
           <label htmlFor="password">
             Invitation Code:
-            <Input
+            <input
               name="invitationCode"
               value={invitationCode}
-              onChange={(value) => setInvitationCode(value)}
+              onChange={(e) => setInvitationCode(e.target.value)}
               placeholder="Enter your invitation code"
               required
               pattern="^[a-zA-Z0-9]{5}$"
@@ -130,11 +116,7 @@ const SignUpPage = () => {
             />
           </label>
           {statusComponent}
-          <button
-            type="submit"
-            data-testid={TEST_ID.submitButton}
-            id="signUpButton"
-          >
+          <button type="submit" data-testid={TEST_ID.submitButton} id="signUpButton">
             Sign Up
           </button>
         </form>

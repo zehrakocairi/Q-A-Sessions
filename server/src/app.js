@@ -3,12 +3,9 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import { requireAuth } from "./middleware/authMiddleware.js";
-import userRouter from "./routes/user.js";
-import questionRouter from "./routes/questions.js";
-import publicQuestionsRouter from "./routes/publicQuestions.js";
+import { questionsRouter, publicQuestionsRouter } from "./routes/questions.js";
 import authRouter from "./routes/auth.js";
 import answerRouter from "./routes/answers.js";
-import userQuestionsRouter from "./routes/user/userQuestion.js";
 
 dotenv.config();
 
@@ -33,11 +30,9 @@ app.use(cookieParser());
  */
 
 app.use("/api/auth", authRouter);
-app.use("/api/user", requireAuth, userRouter);
-app.use("/api/user/userQuestions", requireAuth, userQuestionsRouter);
 app.use("/api/questions", publicQuestionsRouter);
-app.use("/api/questions", requireAuth, questionRouter);
-//app.get("/api/answer", getAnswers);
+app.use("/api/questions", requireAuth, questionsRouter);
 app.use("/api/answer", requireAuth, answerRouter);
 app.use("/api/questions/:questionId/answers", requireAuth, answerRouter);
+
 export default app;

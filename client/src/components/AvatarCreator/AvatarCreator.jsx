@@ -26,11 +26,7 @@ const AvatarCreator = () => {
       </button>
       {avatar && (
         <div className="avatar-container">
-          <img
-            src={`data:image/svg+xml;utf8,${encodeURIComponent(avatar)}`}
-            alt="Avatar"
-            className="avatar-image"
-          />
+          <img src={`data:image/svg+xml;utf8,${encodeURIComponent(avatar)}`} alt="Avatar" className="avatar-image" />
           <div className="avatar-text">{user.name && <h1>{user.name}</h1>}</div>
         </div>
       )}

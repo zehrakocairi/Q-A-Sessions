@@ -30,14 +30,11 @@ const Answer = ({ answer, handleDelete, isAnswerBelongsToUser, question }) => {
     answer = { ...answer, isApproved };
   }, [isApproved]);
 
-  const { performFetch: fetchLikeCount } = useFetch(
-    `/questions/${id}/answers/${answer._id}/like`,
-    ({ result }) => {
-      const { likeCounter, isLiked } = result;
-      setLikeCount(likeCounter ?? 0);
-      setIsLiked(isLiked);
-    }
-  );
+  const { performFetch: fetchLikeCount } = useFetch(`/questions/${id}/answers/${answer._id}/like`, ({ result }) => {
+    const { likeCounter, isLiked } = result;
+    setLikeCount(likeCounter ?? 0);
+    setIsLiked(isLiked);
+  });
 
   const handleLike = () => {
     const options = {
@@ -53,12 +50,9 @@ const Answer = ({ answer, handleDelete, isAnswerBelongsToUser, question }) => {
 
   const isQuestionBelongsToUser = question?.user_id === user?.id;
 
-  const { performFetch: fetchApproveValue } = useFetch(
-    `/questions/${id}/answers/${answer._id}/approve`,
-    (result) => {
-      setIsApproved(result.isApproved);
-    }
-  );
+  const { performFetch: fetchApproveValue } = useFetch(`/questions/${id}/answers/${answer._id}/approve`, (result) => {
+    setIsApproved(result.isApproved);
+  });
 
   const handleApprove = () => {
     const options = {
@@ -75,41 +69,20 @@ const Answer = ({ answer, handleDelete, isAnswerBelongsToUser, question }) => {
   return (
     <div className="answer-wrapper">
       <div className="approval-wrapper">
-        <Button
-          className="icon-button"
-          disabled={
-            user && isQuestionBelongsToUser && !isAnswerBelongsToUser
-              ? false
-              : true
-          }
-          onClick={handleApprove}
-        >
-          {isApproved ? (
-            <StarBorderIcon style={{ fontSize: "24px", color: "#76f013" }} />
-          ) : (
-            <StarBorderIcon style={{ fontSize: "24px" }} />
-          )}
+        <Button className="icon-button" disabled={user && isQuestionBelongsToUser && !isAnswerBelongsToUser ? false : true} onClick={handleApprove}>
+          {isApproved ? <StarBorderIcon style={{ fontSize: "24px", color: "#76f013" }} /> : <StarBorderIcon style={{ fontSize: "24px" }} />}
         </Button>
       </div>
       <div className="button-group">
-        <Button
-          className="icon-button"
-          onClick={handleLike}
-          disabled={!user || isAnswerBelongsToUser ? true : false}
-        >
+        <Button className="icon-button" onClick={handleLike} disabled={!user || isAnswerBelongsToUser ? true : false}>
           {isLiked ? (
             <ThumbUpIcon style={{ fontSize: "18px", color: "#76f013" }} />
           ) : (
-            <ThumbUpIcon
-              style={{ fontSize: "18px" }}
-              disabled={!user || isAnswerBelongsToUser ? true : false}
-            />
+            <ThumbUpIcon style={{ fontSize: "18px" }} disabled={!user || isAnswerBelongsToUser ? true : false} />
           )}
         </Button>
         <Button
-          className={
-            user && isAnswerBelongsToUser ? "icon-button delete" : "icon-button"
-          }
+          className={user && isAnswerBelongsToUser ? "icon-button delete" : "icon-button"}
           disabled={user && isAnswerBelongsToUser ? false : true}
           onClick={() => handleDelete(answer._id)}
         >
@@ -120,8 +93,7 @@ const Answer = ({ answer, handleDelete, isAnswerBelongsToUser, question }) => {
       <div className="answer-pins">
         <span className="pin">{likeCount} LIKES</span>
         <span className="pin">
-          Answered by {answer?.author ?? user?.name} on{" "}
-          {getFormattedDate(answer?.created_at)}
+          Answered by {answer?.author ?? user?.name} on {getFormattedDate(answer?.created_at)}
         </span>
       </div>
     </div>

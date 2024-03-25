@@ -14,7 +14,6 @@ import QuestionDetailsPage from "./pages/QuestionDetailsPage/QuestionDetailsPage
 import PostQuestionPage from "./pages/PostQuestionPage/PostQuestionPage";
 import UserProfilePage from "./pages/UserProfilePage/UserProfilePage";
 import UserQuestionsPage from "./pages/UserQuestionsPage/UserQuestionsPage";
-import UserQuestionDetailsPage from "./pages/UserQuestionDetailsPage/UserQuestionDetailsPage";
 
 const App = () => {
   return (
@@ -30,53 +29,21 @@ const App = () => {
               {/* Modules routes */}
               <Route path="/html" element={<ModulePage moduleName="HTML" />} />
               <Route path="/css" element={<ModulePage moduleName="CSS" />} />
-              <Route
-                path="/cli-git"
-                element={<ModulePage moduleName="CLI | GIT" />}
-              />
-              <Route
-                path="/javascript"
-                element={<ModulePage moduleName="JavaScript" />}
-              />
-              <Route
-                path="/browsers"
-                element={<ModulePage moduleName="Browsers" />}
-              />
-              <Route
-                path="/using-apis"
-                element={<ModulePage moduleName="Using APIs" />}
-              />
-              <Route
-                path="/nodejs"
-                element={<ModulePage moduleName="Node.js" />}
-              />
-              <Route
-                path="/databases"
-                element={<ModulePage moduleName="Databases" />}
-              />
-              <Route
-                path="/react"
-                element={<ModulePage moduleName="React" />}
-              />
+              <Route path="/cli-git" element={<ModulePage moduleName="CLI | GIT" />} />
+              <Route path="/javascript" element={<ModulePage moduleName="JavaScript" />} />
+              <Route path="/browsers" element={<ModulePage moduleName="Browsers" />} />
+              <Route path="/using-apis" element={<ModulePage moduleName="Using APIs" />} />
+              <Route path="/nodejs" element={<ModulePage moduleName="Node.js" />} />
+              <Route path="/databases" element={<ModulePage moduleName="Databases" />} />
+              <Route path="/react" element={<ModulePage moduleName="React" />} />
 
               {/* Authentication routes */}
               <Route path="/auth/sign-up" element={<SignUpPage />} />
               <Route path="/auth/log-in" element={<LogInPage />} />
 
-              {/* Nested User routes */}
-              <Route path="/user-profile">
-                <Route path="" element={<UserProfilePage />} />
-                <Route path="questions">
-                  <Route
-                    path="/user-profile/questions"
-                    element={<UserQuestionsPage />}
-                  />
-                  <Route
-                    path=":questionId"
-                    element={<UserQuestionDetailsPage />}
-                  />
-                </Route>
-              </Route>
+              {/* User routes */}
+              <Route path="/user-profile" element={<UserProfilePage />} />
+              <Route path="/user-profile/my-questions" element={<UserQuestionsPage />} />
 
               {/* Question routes */}
               <Route path="/post-question" element={<PostQuestionPage />} />
